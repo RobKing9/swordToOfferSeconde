@@ -51,7 +51,7 @@
 
 满足条件数位和不大于k。使用的是深度优先遍历，用标记数组来标记访问过的元素。
 
-## ？[剑指 Offer 14- II. 剪绳子 II](https://leetcode.cn/problems/jian-sheng-zi-ii-lcof/)
+## [剑指 Offer 14- II. 剪绳子 II](https://leetcode.cn/problems/jian-sheng-zi-ii-lcof/)
 
 和上一题题目一样，只不过要对最后的结果取对。使用的方法是快速幂。
 
