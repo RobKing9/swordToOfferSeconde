@@ -156,31 +156,30 @@
 
 直接从小到大进行排序，返回数组前k个元素即可。
 
-## ？？？[剑指 Offer 41. 数据流中的中位数](https://leetcode.cn/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/)
+## [剑指 Offer 41. 数据流中的中位数](https://leetcode.cn/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/)
+
+```cpp
+	// 思路：用一个大跟堆保存 较小的一半数据，堆顶为 最大值。
+    // 用一个小根堆保存 较大的一半数据，堆顶为最小值
+    // 这样判断元素个数，如果是奇数，那么中位数就是 大跟堆的堆顶
+    // 如果是偶数，那么中位数就是 两个堆顶的平均值
+
+    // 维护两个堆
+    // 如果大跟堆的堆顶 大于 小根堆的堆顶了，那么说明逆序了，交换两个堆顶
+    // 如果大跟堆的长度 大于 小根堆的长度 超过2  说明大跟堆元素太多，弹出一个 放到小根堆中
+```
 
 ## [剑指 Offer 42. 连续子数组的最大和](https://leetcode.cn/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
 
 这一题要求我们找到所以子数组和中的最大值。我们直接遍历一遍数组，很容易知道，当后面一个数加上前面一个数的和比自己还要小的时候，那么这样构成的数组肯定不是最大的，我们要从他变大的那一刻开始记录，当相加比自己大的时候，把自己变成这个最大值，然后再去和要求的最大值去比较，最后返回最大值即可。
 
-## ？[剑指 Offer 43. 1～n 整数中 1 出现的次数](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)
-
-这一题是给我们一个n，让我们求出从1-n 1出现的次数。因为n可以足够大，所以普通的遍历肯定是求不出的，我们必须要找出规律。我们用cur表示当前位的值，low是低位的值，high是高位的值，digit表示位因子。我们的方法就是遍历所有的位，每一位的出现1的次数相加即可。当前位cur的值有三种情况我们需要去考虑
-
-- cur=0，high*digit
-- cur=1，high*digit+low+1
-- cur>1，(high+1)*digit
-
-我们需要循环遍历，当前位肯定是从个位开始，此时为初始状态
+## [剑指 Offer 43. 1～n 整数中 1 出现的次数](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)
 
 ```
-cur=n%10	low=0	high=n/10	digit=1
-```
-
-然后判断，当前位往高位移动，需要作出的变化
 
 ```
-low += cur*digit	cur=high%10		high /= 10		digit *= 10
-```
+
+
 
 ## ？[剑指 Offer 44. 数字序列中某一位的数字](https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
 
