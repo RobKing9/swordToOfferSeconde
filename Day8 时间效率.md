@@ -341,6 +341,68 @@ func translateNum(num int) int {
 
 
 
+## [剑指 Offer 47. 礼物的最大价值](https://leetcode.cn/problems/li-wu-de-zui-da-jie-zhi-lcof/description/)
+
+在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？
+
+```cpp
+class Solution {
+public:
+    int maxValue(vector<vector<int>>& grid) {
+        // 动态规划
+        if(grid.size() == 0) return -1;
+        int m = grid.size(), n = grid[0].size();
+        vector<vector<int>> dp(m, vector<int>(n, 0));
+        // 初始化
+        dp[0][0] = grid[0][0];
+        for(int i = 1; i < m; i ++ ) dp[i][0] = dp[i - 1][0] + grid[i][0];
+        for(int i = 1; i < n; i ++ ) dp[0][i] = dp[0][i - 1] + grid[0][i];
+
+        for(int i = 1; i < m; i ++ ) {
+            for(int j = 1; j < n; j ++ ) {
+                if(dp[i - 1][j] >= dp[i][j - 1]) dp[i][j] = dp[i - 1][j] + grid[i][j];
+                else dp[i][j] = dp[i][j - 1] + grid[i][j];
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+};
+```
+
+```golang
+func maxValue(grid [][]int) int {
+    m, n := len(grid), len(grid[0])
+    //动态规划 dp[i][j] 表示从左上角到 （i，j） 的最多价值
+    dp := make([][]int, m)
+    for i:=0; i<m; i++ {
+        dp[i] = make([]int, n)
+    }
+    //初始化
+    dp[0][0] = grid[0][0]
+    for i:=1; i<m; i++ {
+        dp[i][0] = dp[i-1][0]+grid[i][0]
+    }
+    for j:=1; j<n; j++ {
+        dp[0][j] = dp[0][j-1]+grid[0][j]
+    }
+    //dp
+    for i:=1; i<m; i++ {
+        for j:=1; j<n; j++ {
+            //状态转移方程
+            dp[i][j] = max(dp[i-1][j]+grid[i][j], dp[i][j-1]+grid[i][j])
+        }
+    }
+    return dp[m-1][n-1]
+}
+
+func max(x, y int) int {
+    if x<y {
+        return y
+    }
+    return x
+}
+```
+
 
 
 ## [剑指 Offer 48. 最长不含重复字符的子字符串](https://leetcode.cn/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/description/)
@@ -391,3 +453,4 @@ func max(x, y int) int {
     return x
 }
 ```
+

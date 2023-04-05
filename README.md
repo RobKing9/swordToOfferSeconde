@@ -71,13 +71,13 @@
 
 在链表中找到指定的值，删除这个节点。考虑到第一个节点可能会被删除，所以需要借助哑巴结点，然后往后遍历，遇到值相等，指向下一个结点，最后返回`head.Next`即可。
 
-## ？？[剑指 Offer 19. 正则表达式匹配](https://leetcode.cn/problems/zheng-ze-biao-da-shi-pi-pei-lcof/)
+## ？[剑指 Offer 19. 正则表达式匹配](https://leetcode.cn/problems/zheng-ze-biao-da-shi-pi-pei-lcof/)
 
-使用的是动态规划，实在看不懂题解。。。。。。。。。。。。。。。
+使用的是动态规划，有点复杂
 
-## ？？[剑指 Offer 20. 表示数值的字符串](https://leetcode.cn/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
+## ？[剑指 Offer 20. 表示数值的字符串](https://leetcode.cn/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
 
-和上一题类似，看不懂。。。。。。。。。。。。。。。。。。。。。
+使用的模拟法，看到目前为止是否构成数字
 
 ## [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面](https://leetcode.cn/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
 
@@ -142,7 +142,7 @@
 
 因为是二叉搜索树，所以中序遍历是有序的，我们可以进行中序遍历，先遍历左节点，当第一次当遍历到根节点的时候，此时`pre`为空将`head = cur`，然后用pre保存当前结点cur的值，之后进行修改pre的right变为cur，cur的left变为pre，每一次pre都保存cur的值，遍历结束之后此时变成了双向链表，但是没有循环，所以我们需要让head的left指向pre即头结点指向尾结点，pre的right指向head即尾结点指向头结点。
 
-## ？？？[剑指 Offer 37. 序列化二叉树](https://leetcode.cn/problems/xu-lie-hua-er-cha-shu-lcof/)
+## ？[剑指 Offer 37. 序列化二叉树](https://leetcode.cn/problems/xu-lie-hua-er-cha-shu-lcof/)
 
 ## [剑指 Offer 38. 字符串的排列](https://leetcode.cn/problems/zi-fu-chuan-de-pai-lie-lcof/)
 
@@ -176,12 +176,17 @@
 ## [剑指 Offer 43. 1～n 整数中 1 出现的次数](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)
 
 ```
-
+abdef
+_ _ d _ _ 
+前面可以是 
+1、 0 ~ ab-1 第一种情况  
+2、 ab 是另一种情况，此时需要讨论 d 的值 d = 1  后面可以取 0~df df + 1种, d = 0 无，d > 1 可以取0~99 100种
+以这样的方式求出每一位出现1的次数
 ```
 
 
 
-## ？[剑指 Offer 44. 数字序列中某一位的数字](https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
+## [剑指 Offer 44. 数字序列中某一位的数字](https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
 
 数字以0123456789101112131415…的格式序列化到一个字符序列中，我们的目标是给定一个位数，判断它的值。
 
@@ -192,7 +197,7 @@
    用一个count来判断，n和count进行比较。start表示每一个位数的开始值，digit表示位数。初始状态
 
    ```
-   digit=1		start=1		count=9
+   digit=1		start=1		cnt=9
    ```
 
    循环
@@ -200,8 +205,6 @@
    ```
    n -= count	start *= 10		digit += 1		count = 9*start*digit
    ```
-
-   
 
 2. 确定所求数位所在的数字。比如我们要求第19位，我们就先确定第19位是在14这个数字
 
@@ -214,7 +217,7 @@
 3. 确定所求数位在 num 的哪一数位。是在14的1还是4
 
    ```
-   将num编程一个字符串，找到下标为 (n-1)%digit	的值
+   将num 变成 一个字符串，找到下标为 (n-1)%digit	的值
    ```
 
 
@@ -224,6 +227,11 @@
 
 ## [剑指 Offer 46. 把数字翻译成字符串](https://leetcode.cn/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)
 
+思路很简单，动态规划，dp表示到当前的总数，两种情况：
+
+1. 要么和前一个数结合 `dp[i] = dp[i - 1] + dp[i - 2]` 。 dp[i - 2] 是结合的总数，dp[i - 1] 是结合的总数，需要相加
+2. 要么结合不了（也就是大于25或者前一个为0）`dp[i] = dp[i - 1]`
+
 剑指offer下的`动态规划`目录文件
 
 ## [剑指 Offer 47. 礼物的最大价值](https://leetcode.cn/problems/li-wu-de-zui-da-jie-zhi-lcof/)
@@ -231,6 +239,12 @@
 从左上一直到右下，找到礼物的最大价值。我们采用动态规划的方法，遍历数组，当前值的dp取上或者左的最大值。最后返回dp即可
 
 ## [剑指 Offer 48. 最长不含重复字符的子字符串](https://leetcode.cn/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
+
+算法思想是滑动窗口，通过控制左端点和当前的索引构成的窗口里都是不重复的，不断更新最长的值
+
+需要注意的是当map中找到出现过的了，需要更新 `left = max(left, map[i] + 1)`，这里之所以需要和left取最大值，是因为如果是           
+
+abba的话，那么遍历到 第二个a的时候，此时left如果不取最大值就是 1， 但是实际上应该是 2。所以说最基本还是得从left开始
 
 剑指offer`数组_双指针_滑动窗口`目录下的文件。
 
@@ -240,11 +254,15 @@
 
 ## [剑指 Offer 50. 第一个只出现一次的字符](https://leetcode.cn/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/)
 
-给定一个字符串，返回第一个只出现一次的字符。所以我们需要进行计数，首先可以用哈希表，遍历字符串进行计数，再次遍历返回第一个哈希值为1的字符，但是这种时间复杂度太高了，我们可以用26位数组来进行计数，下标是`s[i]-'a'`, 值就是次数，最后同样再次遍历即可。
+给定一个字符串，返回第一个只出现一次的字符。所以我们需要进行计数，首先可以用哈希表，遍历字符串进行计数，再次遍历返回第一个哈希值为1的字符，但是这种时间复杂度太高了，我们可以用26位数组来进行计数，下标是`s[i]-'a'`, 值就是次数，最后同样再次遍历字符串即可，不能遍历哈希表，因为顺序不对，答案需要返回第一次出现的。	
 
-## ？[剑指 Offer 51. 数组中的逆序对](https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)
+## [剑指 Offer 51. 数组中的逆序对](https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)
 
-使用的是**归并排序**的方法，在合并的同时，如果左边的数大于右边的数，那么左边剩下的都是逆序对。
+使用的是**归并排序**的方法。
+
+总的逆序对数为 左边逆序对数 + 右边逆序对数 + 两边形成的逆序对
+
+在合并的同时，如果左边数组的某个数大于右边数组的某个数，那么左边数组 这个数之后的和右边数组的那个数都构成逆序对，因为合并的是两个有序数组，所以左边这个数 之后的数都会小于右边数组的那个数。
 
 ## [剑指 Offer 52. 两个链表的第一个公共节点](https://leetcode.cn/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)
 
@@ -271,6 +289,14 @@
 平衡二叉树要求左右子树的高度不能超过1，我们还是和上一题一样使用分治递归法，先算出左子树的最大深度，再算出右子树的最大深度，然后要求差值绝对值不能大于1，然后递归，左边也得是平衡二叉树，右边也得是平衡二叉树。
 
 ## [剑指 Offer 56 - I. 数组中数字出现的次数](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
+
+```cpp
+// 思路：先将所有的数 异或 结果就是 只出现一次的那两个数 异或的结果
+// 异或不为0 说明两个数的二进制位肯定有一位 是0和1，这样得到的异或值二进制这位是 1
+// 根据这个位 可以将所有的数分为两半
+// 一半是这位为0的，一半是这位为1的，另外相等的数一定会出现在同一边
+// 这样就化为了两个集合，结果那两个数分别在两个集合中，集合异或即可 得到那个数
+```
 
 这一题使用的是位运算，具体见位运算目录下的文件。
 
