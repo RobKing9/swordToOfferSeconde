@@ -86,66 +86,6 @@ public:
 };
 ```
 
-## [剑指 Offer 63. 股票的最大利润](https://leetcode.cn/problems/gu-piao-de-zui-da-li-run-lcof/description/?favorite=xb9nqhhg)
-
-假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？
-
-```cpp
-class Solution {
-public:
-    int maxProfit(vector<int>& prices) {
-        if(prices.size() == 0) return 0;
-        int min = prices[0];
-        int res = 0;
-        for(int i = 1; i < prices.size(); i ++) {
-            res = max(res, prices[i] - min);
-            if(prices[i] < min) min = prices[i];
-        }
-        return res;
-    }
-};
-```
-
-## [剑指 Offer 64. 求1+2+…+n](https://leetcode.cn/problems/qiu-12n-lcof/description/?favorite=xb9nqhhg)
-
-求 `1+2+...+n` ，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
-
-```cpp
-class Solution {
-public:
-    int sumNums(int n) {
-        n && (n += sumNums(n - 1));
-        return n;
-    }
-};
-```
-
-
-
-## [剑指 Offer 66. 构建乘积数组](https://leetcode.cn/problems/gou-jian-cheng-ji-shu-zu-lcof/description/)
-
-```cpp
-class Solution {
-public:
-    vector<int> constructArr(vector<int>& a) {
-        if(a.size() == 0) return {};
-        // res记录答案
-        vector<int> res(a.size(), 1);
-        for(int i = 1; i < a.size(); i ++ ) {
-            // 从前往后计算，每次结果是 上一次的乘积乘上上一次的那个数
-            res[i] = res[i - 1] * a[i - 1];
-        }
-        // 从后往前
-        int rightSum = 1;
-        for(int i = a.size() - 2; i >= 0; i --) {
-            rightSum *= a[i + 1];
-            res[i] *= rightSum;
-        }
-        return res;
-    }
-};
-```
-
 ## [面试题61. 扑克牌中的顺子](https://leetcode.cn/problems/bu-ke-pai-zhong-de-shun-zi-lcof/description/)
 
 从**若干副扑克牌**中随机抽 `5` 张牌，判断是不是一个顺子，即这5张牌是不是连续的。2～10为数字本身，A为1，J为11，Q为12，K为13，而大、小王为 0 ，可以看成任意数字。A 不能视为 14。
